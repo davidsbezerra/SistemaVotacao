@@ -14,7 +14,6 @@ import javax.persistence.ManyToOne;
 import br.com.sicredi.votacao.enums.VotoEnum;
 
 @Entity
-//@IdClass(VotacaoAssociadoPK.class)
 public class VotacaoAssociado implements Serializable {
 
 	/**
@@ -26,11 +25,9 @@ public class VotacaoAssociado implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-//	@Id
 	@ManyToOne
 	private SessaoVotacao sesaoVotacao;
 
-//	@Id
 	@ManyToOne
 	private Associado associado;
 
