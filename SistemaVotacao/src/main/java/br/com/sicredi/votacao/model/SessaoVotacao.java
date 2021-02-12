@@ -37,7 +37,7 @@ public class SessaoVotacao implements Serializable {
 	@Enumerated(EnumType.ORDINAL)
 	private StatusSessaoVotacaoEnum statusSessaoVotacao;
 
-	@OneToMany(mappedBy = "sesaoVotacao", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "sesaoVotacao", cascade = CascadeType.ALL)
 	private List<VotacaoAssociado> votacaoAssociado;
 
 	@Column
