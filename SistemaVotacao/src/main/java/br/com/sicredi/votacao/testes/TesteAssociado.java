@@ -2,32 +2,35 @@ package br.com.sicredi.votacao.testes;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import br.com.sicredi.votacao.model.Associado;
 import br.com.sicredi.votacao.repository.AssociadoRepository;
+import br.com.sicredi.votacao.service.AssociadoService;
 
 @ExtendWith(SpringExtension.class)
-@DataJpaTest
+@SpringBootTest
 public class TesteAssociado {
 
 	@Autowired
 	private AssociadoRepository associadoRepository;
 
+	@Autowired
+	private AssociadoService associadoService;
+
 	@Test
-	public void salvarBuscarExcuirAssociado() {
+	public void salvarBuscarExcuir() {
 
 		Associado associado = new Associado();
 		associado.setNome("Nome");
 		associado.setCpf("12345678909");
 
-		associado = associadoRepository.save(associado);
+		associado = associadoService.salvar(associado);
 
 		assertNotNull(associado.getId());
 
@@ -35,23 +38,10 @@ public class TesteAssociado {
 
 			assertNotNull(associadoRepository.findById(associado.getId()));
 
-			associadoRepository.deleteById(associado.getId());
+			associadoService.excluir(associado.getId());
 
 			assertFalse(associadoRepository.findById(associado.getId()).isPresent());
 		}
-
-	}
-
-	@Test
-	public void buscarAssociados() {
-
-		Associado associado = new Associado();
-		associado.setNome("Nome");
-		associado.setCpf("12345678909");
-
-		associado = associadoRepository.save(associado);
-
-		assertTrue(!associadoRepository.findAll().isEmpty());
 
 	}
 
