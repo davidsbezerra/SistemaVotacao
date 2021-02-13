@@ -39,11 +39,10 @@ public class VotacaoAssociadoDAO {
 		Map<String, Object> params = new HashMap<String, Object>();
 
 		if (pauta != null) {
+			
 			jpql.append("	AND pa = :pauta ");
 			params.put("pauta", pauta);
-		}
-
-		if (pauta != null) {
+	
 			jpql.append("	AND sv.statusSessaoVotacao = :statusVotacao ");
 			params.put("statusVotacao", StatusSessaoVotacaoEnum.FECHADA);
 		}
@@ -81,7 +80,6 @@ public class VotacaoAssociadoDAO {
 			jpql.append("	AND va.associado = :associado ");
 			params.put("associado", associado);
 		}
- 
 
 		Query query = this.entityManager.createQuery(jpql.toString(), VotacaoAssociado.class);
 

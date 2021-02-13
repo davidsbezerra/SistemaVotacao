@@ -50,7 +50,7 @@ public class VotacaoAssociadoService {
 		if (pauta != null && pauta.getSessaoVotacao() != null
 				&& StatusSessaoVotacaoEnum.FECHADA != pauta.getSessaoVotacao().getStatusSessaoVotacao()) {
 
-			throw new NegocioException("A sessão de votação não está fechada");
+			throw new NegocioException("A sessão de votação não está fechada.");
 
 		}
 
